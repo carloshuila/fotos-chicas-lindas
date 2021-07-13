@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Beautiful Girls Photos</string>
+
+    <string name="nuestras_categorias">Categories</string>
+    <string name="share_app_message">Beautiful Girls Photos Look And Download The Best Photos Of Beautiful Women</string>
+    <string name="fotos_recomendadas">Recommended Photos</string>
+    <string name="titulo_barra_lista">Category</string>
+    <string name="titulo_barra_ver_persona">See Girl</string>
+    <string name="titulo_barra_categorias">Categories</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_categorias">Categories</string>
+    <string name="menu_compartir">Share</string>
+    <string name="inicio_descarga">Starting Download</string>
+
+    <!--- Categorias No Traducir-->
+    <string name="categoria_1">Colombianas</string>
+    <string name="categoria_2">Latinas</string>
+    <string name="categoria_3">Rubias</string>
+    <string name="categoria_4">Mexicanas</string>
+    <string name="categoria_5">Asiáticas</string>
+    <string name="categoria_6">Famosas</string>
+    <string name="categoria_7">Rusas</string>
+    <string name="categoria_8">Pelirrojas</string>
+
+    <!-- API Google AdMob -->
+    <string name="admob_app_id">ca-app-pub-2918954216814904~2881674747</string>
+
+    <string name="admob_banner_ad1">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_banner_ad2">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+</resources>

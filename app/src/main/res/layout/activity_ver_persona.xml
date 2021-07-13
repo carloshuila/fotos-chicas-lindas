@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/escritorio_verPersona"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:id="@+id/contenedor_PrincipalPersona"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_weight="0"
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        android:scrollbars="horizontal">
+
+        <LinearLayout
+            android:id="@+id/contenedor_princ_persona"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            android:scrollbars="horizontal">
+
+            <LinearLayout
+                android:id="@+id/sun_contenedor_imgPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+                <RelativeLayout
+                    android:id="@+id/contenedor_verpersona"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+
+                    <com.github.chrisbanes.photoview.PhotoView
+                        android:id="@+id/id_imagen_persona_Act"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/color_blanco"
+                        android:scaleType="center"
+                        app:layout_constraintStart_toStartOf="parent">
+                    </com.github.chrisbanes.photoview.PhotoView>
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:text="@string/titulo_barra_ver_persona"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btnAtras"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_atras_blanco" />
+
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/floating_btn_descargar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="30dp"
+                        android:layout_marginBottom="485dp"
+                        android:clickable="true"
+                        app:backgroundTint="@color/color_text_carview_btn_descargar"
+                        app:srcCompat="@drawable/img_descargar" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/ads_banner_verPersona2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:adSize="BANNER"
+                app:adUnitId="@string/admob_banner_ad2" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>
