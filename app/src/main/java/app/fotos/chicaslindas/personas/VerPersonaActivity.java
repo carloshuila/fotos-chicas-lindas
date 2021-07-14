@@ -112,22 +112,22 @@ public class VerPersonaActivity extends AppCompatActivity {
         request.setAllowedNetworkTypes(3);
         request.setNotificationVisibility(1);
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
-        request.setTitle(nombreImagen+".png");
+        request.setTitle(nombreImagen+".jpg");
         request.setVisibleInDownloadsUi(true);
         String cookie = CookieManager.getInstance().getCookie(url_img);
         request.addRequestHeader("cookie", cookie);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Fotos Chicas Lindas/" + nombreImagen+".png" );
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Fotos Chicas Lindas/" + nombreImagen+".jpg" );
         ((DownloadManager) this.getSystemService(DOWNLOAD_SERVICE)).enqueue(request);
         try {
             if (Build.VERSION.SDK_INT >= 19) {
-                MediaScannerConnection.scanFile(this, new String[]{new File(Environment.DIRECTORY_DOWNLOADS + "/" + "/Fotos Chicas Lindas/" +  nombreImagen+".png" ).getAbsolutePath()}, (String[]) null, new MediaScannerConnection.OnScanCompletedListener() {
+                MediaScannerConnection.scanFile(this, new String[]{new File(Environment.DIRECTORY_DOWNLOADS + "/" + "/Fotos Chicas Lindas/" +  nombreImagen+".jpg" ).getAbsolutePath()}, (String[]) null, new MediaScannerConnection.OnScanCompletedListener() {
                     public void onScanCompleted(String url_img, Uri uri) {
                     }
                 });
                 return;
             }
-            this.sendBroadcast(new Intent("android.intent.action.MEDIA_MOUNTED", Uri.fromFile(new File(Environment.DIRECTORY_DOWNLOADS + "/" + "/Fotos Chicas Lindas/" + nombreImagen+".png" ))));
+            this.sendBroadcast(new Intent("android.intent.action.MEDIA_MOUNTED", Uri.fromFile(new File(Environment.DIRECTORY_DOWNLOADS + "/" + "/Fotos Chicas Lindas/" + nombreImagen+".jpg" ))));
         } catch (Exception e) {
             e.printStackTrace();
         }
