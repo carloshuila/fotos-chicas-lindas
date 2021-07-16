@@ -1,22 +1,17 @@
 package app.fotos.chicaslindas;
 
-import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,20 +22,15 @@ import androidx.core.app.TaskStackBuilder;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 import com.google.firebase.messaging.RemoteMessage;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import app.fotos.chicaslindas.personas.Persona;
 import app.fotos.chicaslindas.personas.VerPersonaActivity;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
- //  private Instant GlideApp;
 
     public FirebaseMessagingService() {
     }
@@ -48,14 +38,18 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        String titulo = remoteMessage.getNotification().getTitle();
-        String body = remoteMessage.getNotification().getBody();
+        String titulo = Objects.requireNonNull(remoteMessage.getNotification()).getTitle();
+       String body = remoteMessage.getNotification().getBody();
         String imagen = remoteMessage.getData().get("imagen");
         String nombre = remoteMessage.getData().get("nombre");
         String categoria = remoteMessage.getData().get("categoria");
         String imgIcono = remoteMessage.getData().get("icono");
 
-        if (remoteMessage.getData().size() > 0) {
+        if (!remoteMessage.getData().isEmpty()){
+
+            crearNotificacion(titulo, body, imagen, nombre, categoria,imgIcono);
+        }
+        else{
             crearNotificacion(titulo, body, imagen, nombre, categoria,imgIcono);
         }
 
@@ -86,7 +80,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                 .setContentTitle(titulo)
                 .setContentText(body)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setLights(Color.MAGENTA, 1000, 1000)
                 .setSound(defaultSoundUri)
                 .setColor(Color.BLACK)
@@ -98,7 +92,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
 
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
@@ -139,6 +133,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
                         Notification notification = builder.build();
                         notificationManager.notify(NotificationID.getID(), notification);
+                        startForeground(0, notification);
                     }
                     @Override
                     public void onLoadCleared(@Nullable Drawable placeholder) {
@@ -149,32 +144,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                     }
                 });
     }
-
-    public static boolean isAppIsInBackground(Context context) {
-        boolean isInBackground = true;
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
-            ArrayList<ActivityManager.RunningAppProcessInfo> runningProcesses = (ArrayList<ActivityManager.RunningAppProcessInfo>) am.getRunningAppProcesses();
-            for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
-                if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                    for (String activeProcess : processInfo.pkgList) {
-                        if (activeProcess.equals(context.getPackageName())) {
-                            isInBackground = false;
-                        }
-                    }
-                }
-            }
-        } else {
-            List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
-            ComponentName componentInfo = taskInfo.get(0).topActivity;
-            if (componentInfo.getPackageName().equals(context.getPackageName())) {
-                isInBackground = false;
-            }
-        }
-
-        return isInBackground;
-    }
-
     static class NotificationID {
         private final static AtomicInteger c = new AtomicInteger(100);
 

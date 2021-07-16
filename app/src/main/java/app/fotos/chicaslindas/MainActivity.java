@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void EnviarListarRecyclerView_CategoriasHome(ArrayList<Categoria> misCategorias){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.id_recyclerView_Home_Categorias);
+        RecyclerView myRecyclerView = findViewById(R.id.id_recyclerView_Home_Categorias);
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
         AdapterCategoria MyAdapter = new AdapterCategoria(this,misCategorias);
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void  EnviarListarRecyclerViewRecomendados( ArrayList<Persona> misRecomendados){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.id_recyclerView_producto_recomendado);
+        RecyclerView myRecyclerView = findViewById(R.id.id_recyclerView_producto_recomendado);
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
         AdapterRecomendado MyAdapter = new AdapterRecomendado(this,misRecomendados);
